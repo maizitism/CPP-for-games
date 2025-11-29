@@ -65,5 +65,31 @@ int main() {
 		}
 		highscores.close();
 	}
+
+	// writing binary files
+	{
+		std::ofstream highscores("highscores.bin", std::ios::binary);
+		if (!highscores) {
+			std::cerr << "Error: Error while opening file" << std::endl;
+			return 1;
+		}
+
+		Highscore scores[] = {
+			{"DAN", 2014},
+			{"TOM", 2012},
+			{"LUC", 2009},
+			{"SUZ", 1978},
+			{"JER", 1977}
+		};
+		auto numScores = std::size(scores);
+		highscores.write(reinterpret_cast<const char*>(&numScores), sizeof(numScores)); // writes the number of elements at top of file
+		highscores.write(reinterpret_cast<const char*>(scores), numScores * sizeof(Highscore)); // writes all entries of struct in order
+
+		if (highscores.bad()) {
+			std::cerr << "Error: File could not be written to." << std::endl;
+			return 1;
+		}
+		highscores.close(); 
+	}
 	return 0;
 }
