@@ -11,7 +11,7 @@ int main() {
 	std::cin >> name;
 
 	std::cout << "What is your age?" << std::endl;
-	std::cin >> age;
+	std::cin >> age; // rounding down beheavior if input number is a float. unsure how to fix.
 
 	// if user doesnt input number for age, failstate will be set for cin.
 	while (std::cin.fail()) {
