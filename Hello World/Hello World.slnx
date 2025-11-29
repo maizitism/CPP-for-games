@@ -4,6 +4,7 @@
     <Platform Name="x86" />
   </Configurations>
   <Project Path="../Build Process/Build Process.vcxproj" Id="355bfd60-f42e-450c-acb6-f399bcbe4556" />
+  <Project Path="../File IO/File IO.vcxproj" Id="1c5c7c81-118d-414d-b449-9164da0fcfdf" />
   <Project Path="../IO Lab Assignment/IO Lab Assignment.vcxproj" Id="2cf3d3b5-2110-49a8-8d6e-11ff8859b9e4" />
   <Project Path="../IO/IO.vcxproj" Id="d9229f37-274d-4b49-9363-36c771f6f9cb" />
   <Project Path="Hello World/Hello World.vcxproj" Id="540280a8-dd61-457d-bb76-f2f75991b1e8" />
