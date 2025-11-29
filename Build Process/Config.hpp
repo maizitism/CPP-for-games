@@ -10,3 +10,6 @@
 // telling linker that these variables exist somewhere, but not here.
 extern float jumpHeight;
 extern float jumpDuration;
+
+// with this definition, these values are not defined anywhere, not stored anywhere
+// time to create storage for these files in only one storage unit
