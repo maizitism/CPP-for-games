@@ -4,6 +4,11 @@
 
 int main() {
 
+	struct Highscore {
+		char name[4];
+		uint32_t score;
+	};
+
 	std::string fileName = "highscores.txt"; // define filename because i cant be bothered to type it everywhere
 	//creates scope block for variable containment
 	// write ascii files
@@ -37,6 +42,26 @@ int main() {
 		highscores << "JER " << 1977 << std::endl;
 		if (highscores.bad()) {
 			std::cerr << "Error: failed to write to " << fileName << std::endl;
+		}
+		highscores.close();
+	}
+
+	// read ascii files
+	{
+		std::ifstream highscores(fileName);
+		if (!highscores) {
+			std::cerr << "Error: failed to open file for reading." << std::endl;
+			return 1;
+		}
+
+		char name[4];
+		int score;
+		while (highscores >> name >> score) {
+			std::cout << "Name: " << name << ", Score: " << score << std::endl;
+		}
+		if(highscores.bad()){
+			std::cerr << "Error: File could not be read." << std::endl;
+			return 1;
 		}
 		highscores.close();
 	}
