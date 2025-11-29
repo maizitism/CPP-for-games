@@ -91,5 +91,34 @@ int main() {
 		}
 		highscores.close(); 
 	}
+
+	// reading binary files
+
+	{
+		std::ifstream highscores("highscores.bin", std::ios::binary);
+		if (!highscores) {
+			std::cerr << "Error: Could not read the file." << std::endl;
+			return 1;
+		}
+
+		// read first 8 bytes of file
+		size_t numEntries;
+		highscores.read(reinterpret_cast<char*>(&numEntries), sizeof(numEntries)); // now we know how many entries to read
+
+		Highscore* scores = new Highscore[numEntries];
+		highscores.read(reinterpret_cast<char*>(scores), numEntries * sizeof(Highscore));
+
+		if (highscores.bad()) {
+			std::cerr << "Error: Failed to read from file." << std::endl;
+			return 1;
+		}
+
+		for (int i = 0; i < numEntries; i++) {
+			std::cout << "Name: " << scores[i].name << ", Score: " << scores[i].score << std::endl;
+		}
+		delete[] scores; // delete memory after dynamic allocation in line 108
+		
+		highscores.close();
+	}
 	return 0;
 }
