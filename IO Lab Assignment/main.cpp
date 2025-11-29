@@ -22,17 +22,20 @@ int main() {
 	}
 
 	if (age > 0 && age < 25) {
-		std::cout << "Hello " << name << ", you are only " << age << "years old.";
+		std::cout << "Hello " << name << ", you are only " << age << " years old." << std::endl;
 	}
 	else if (age >= 25 && age < 50) {
-		std::cout << "Hello " << name << ", you are already " << age << "years old.";
+		std::cout << "Hello " << name << ", you are already " << age << " years old." << std::endl;
 	}
 	else if (age >= 50) {
-		std::cout << "Hello " << name << ". You are very wise for your age.";
+		std::cout << "Hello " << name << ". You are very wise for your age." << std::endl;
 	}
 	else {
-		std::cout << "Hello " << name << ". You have not been born yet.";
+		std::cout << "Hello " << name << ". You have not been born yet." << std::endl;
 	}
 
+	std::cout << "Press enter to exit." << std::endl;
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	std::cin.get();
 	return 0;
 }
