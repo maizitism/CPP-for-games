@@ -10,6 +10,7 @@
   <Project Path="../File IO/File IO.vcxproj" Id="1c5c7c81-118d-414d-b449-9164da0fcfdf" />
   <Project Path="../IO Lab Assignment/IO Lab Assignment.vcxproj" Id="2cf3d3b5-2110-49a8-8d6e-11ff8859b9e4" />
   <Project Path="../IO/IO.vcxproj" Id="d9229f37-274d-4b49-9363-36c771f6f9cb" />
+  <Project Path="../Pointers/Pointers.vcxproj" Id="77369d2b-936d-41d3-8c37-0d7ef71e0fa2" />
   <Project Path="../Type Conversion Assignment/Type Conversion Assignment.vcxproj" Id="6469ac4a-abb2-4904-9f8e-42bbe8bf92c0" />
   <Project Path="../Type Conversion/Type Conversion.vcxproj" Id="0aebce91-4f86-4f61-a539-fcef0cad0ce0" />
   <Project Path="Hello World/Hello World.vcxproj" Id="540280a8-dd61-457d-bb76-f2f75991b1e8" />
