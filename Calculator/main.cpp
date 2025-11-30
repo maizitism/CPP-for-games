@@ -1,7 +1,26 @@
 #include <iostream>
-#include <string>
+#include <tuple>
+#include <limits>
 
+std::tuple<int, int, bool> obtainAndCheckInputValues() {
+	int num1 = 0;
+	int num2 = 0;
+	std::cout << "Enter the first number!" << std::endl;
+	std::cin >> num1;
+	std::cout << "Enter the second number!" << std::endl;
+	std::cin >> num2;
+	
+	if (std::cin.fail()) {
+		std::cout << "One of the numbers was not valid. Try again."
+			<< std::endl;
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
+		return {0, 0, false}
+	}
+
+	return {num1, num2, true}
+}
 
 int main() {
 	enum class CalculatorState {
@@ -26,7 +45,12 @@ int main() {
 			continue;
 		}
 		command = userInput[0];
+
+		int num1 = 0;
+		int num2 = 0;
 		switch (command) {
+		case '+':
+			break;
 
 		case 'q':
 			std::cout << "Goodbye!" << std::endl;
