@@ -52,7 +52,7 @@ int main() {
 			if (!ok) {
 				break;
 			}
-			int result = num1 + num2;
+			double result = num1 + num2;
 			std::cout << "The result is " << result << " ." << std::endl;
 			break;
 		}
@@ -61,7 +61,20 @@ int main() {
 			if (!ok) {
 				break;
 			}
-			int result = num1 - num2;
+			double result = num1 - num2;
+			std::cout << "The result is " << result << " ." << std::endl;
+			break;
+		}
+		case '/': {
+			auto [num1, num2, ok] = obtainAndCheckInputValues();
+			if (!ok) {
+				break;
+			}
+			if (num2 == 0) {
+				std::cout << "Division by zero is bad. Try again." << std::endl;
+				break;
+			}
+			double result = num1 / num2;
 			std::cout << "The result is " << result << " ." << std::endl;
 			break;
 		}
