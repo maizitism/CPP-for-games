@@ -56,6 +56,15 @@ int main() {
 			std::cout << "The result is " << result << " ." << std::endl;
 			break;
 		}
+		case '-': {
+			auto [num1, num2, ok] = obtainAndCheckInputValues();
+			if (!ok) {
+				break;
+			}
+			int result = num1 - num2;
+			std::cout << "The result is " << result << " ." << std::endl;
+			break;
+		}
 		case 'q':
 			std::cout << "Goodbye!" << std::endl;
 			state = CalculatorState::Off;
