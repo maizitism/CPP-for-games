@@ -16,10 +16,10 @@ std::tuple<int, int, bool> obtainAndCheckInputValues() {
 		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-		return {0, 0, false}
+		return { 0, 0, false };
 	}
 
-	return {num1, num2, true}
+	return { num1, num2, true };
 }
 
 int main() {
@@ -46,12 +46,16 @@ int main() {
 		}
 		command = userInput[0];
 
-		int num1 = 0;
-		int num2 = 0;
 		switch (command) {
-		case '+':
+		case '+':{
+			auto [num1, num2, ok] = obtainAndCheckInputValues();
+			if (!ok) {
+				break;
+			}
+			int result = num1 + num2;
+			std::cout << "The result is " << result << " ." << std::endl;
 			break;
-
+		}
 		case 'q':
 			std::cout << "Goodbye!" << std::endl;
 			state = CalculatorState::Off;
