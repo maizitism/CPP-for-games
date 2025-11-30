@@ -19,7 +19,8 @@ std::tuple<int, int, bool> obtainAndCheckInputValues() {
 		return { 0, 0, false };
 	}
 
-	return { num1, num2, true };
+	return { static_cast<double>(num1),
+		static_cast<double>(num2), true };
 }
 
 int main() {
