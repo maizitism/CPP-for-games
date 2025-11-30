@@ -22,6 +22,22 @@ std::tuple<double, double, bool> obtainAndCheckInputValues() {
 	return {num1, num2 , true};
 }
 
+double evaluate(double rhs, double lhs, char command) {
+	switch (command) {
+	case '+':
+		return rhs + lhs;
+	case '-':
+		return rhs - lhs;
+	case '/':
+		if (lhs == 0) {
+			return NULL;
+		}
+		return rhs / lhs;
+	case '*':
+		return rhs * lhs;
+	}
+	return NULL;
+}
 int main() {
 	enum class CalculatorState {
 		On,
@@ -45,57 +61,25 @@ int main() {
 			continue;
 		}
 		command = userInput[0];
-
-		switch (command) {
-		case '+':{
-			auto [num1, num2, ok] = obtainAndCheckInputValues();
-			if (!ok) {
-				break;
-			}
-			double result = num1 + num2;
-			std::cout << "The result is " << result << " ." << std::endl;
-			break;
-		}
-		case '-': {
-			auto [num1, num2, ok] = obtainAndCheckInputValues();
-			if (!ok) {
-				break;
-			}
-			double result = num1 - num2;
-			std::cout << "The result is " << result << " ." << std::endl;
-			break;
-		}
-		case '/': {
-			auto [num1, num2, ok] = obtainAndCheckInputValues();
-			if (!ok) {
-				break;
-			}
-			if (num2 == 0) {
-				std::cout << "Division by zero is bad. Try again." << std::endl;
-				break;
-			}
-			double result = num1 / num2;
-			std::cout << "The result is " << result << " ." << std::endl;
-			break;
-		}
-		case '*': {
-			auto [num1, num2, ok] = obtainAndCheckInputValues();
-			if (!ok) {
-				break;
-			}
-			double result = num1 * num2;
-			std::cout << "The result is " << result << " ." << std::endl;
-			break;
-		}
-		case 'q':
+		// check if quit command issued
+		if (command == 'q') {
 			std::cout << "Goodbye!" << std::endl;
 			state = CalculatorState::Off;
-			break;
-		default:
-			std::cout << "Command was not detected as valid. Try again."
-				<< std::endl;
-			break;
+			continue;
 		}
+
+		auto [num1, num2, ok] = obtainAndCheckInputValues();
+		if (!ok) {
+			continue;
+		}
+
+		double result = evaluate(num1, num2, command);
+		if (result == NULL) {
+			std::cout << "The result could not be evaluated." << std::endl;
+			continue;
+		}
+		
+		std::cout << "The result is " << result << "." << std::endl;
 
 	}
 	return 0;
