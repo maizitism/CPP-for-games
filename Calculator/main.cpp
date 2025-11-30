@@ -2,9 +2,9 @@
 #include <tuple>
 #include <limits>
 
-std::tuple<int, int, bool> obtainAndCheckInputValues() {
-	int num1 = 0;
-	int num2 = 0;
+std::tuple<double, double, bool> obtainAndCheckInputValues() {
+	double num1 = 0;
+	double num2 = 0;
 	std::cout << "Enter the first number!" << std::endl;
 	std::cin >> num1;
 	std::cout << "Enter the second number!" << std::endl;
@@ -19,8 +19,7 @@ std::tuple<int, int, bool> obtainAndCheckInputValues() {
 		return { 0, 0, false };
 	}
 
-	return { static_cast<double>(num1),
-		static_cast<double>(num2), true };
+	return {num1, num2 , true};
 }
 
 int main() {
