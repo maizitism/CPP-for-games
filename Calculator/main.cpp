@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+
 
 
 int main() {
@@ -11,10 +13,19 @@ int main() {
 	CalculatorState state = CalculatorState::On;
 
 	char command = '\0';
+	std::string userInput;
+
 	while (state == CalculatorState::On) {
 		std::cout << "What operation do you want to perform? (+, -, /, *, q)"
 			<< std::endl;
-		std::cin >> command;
+		std::cin >> userInput;
+		// check if user input is exactly one character
+		if (userInput.size() != 1) {
+			std::cout << "You cannot perform multiple operations at once. " <<
+				"Try again." << std::endl;
+			continue;
+		}
+		command = userInput[0];
 		switch (command) {
 
 		case 'q':
