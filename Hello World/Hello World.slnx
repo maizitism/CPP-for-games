@@ -3,6 +3,7 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
+  <Project Path="../Auto Keyword/Auto Keyword.vcxproj" Id="55d5f6ca-0622-4a90-9bbc-602b21ac9aa6" />
   <Project Path="../Build Process/Build Process.vcxproj" Id="355bfd60-f42e-450c-acb6-f399bcbe4556" />
   <Project Path="../Enumerations/Enumerations.vcxproj" Id="4f0525f1-d2c4-4b74-8b2f-94e99d8ff021" />
   <Project Path="../File IO/File IO.vcxproj" Id="1c5c7c81-118d-414d-b449-9164da0fcfdf" />
