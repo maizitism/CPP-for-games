@@ -1,6 +1,5 @@
 #include <iostream>
 #include <limits>
-#include <climits>
 
 float computeMaximum(int* arr, int size) {
 	float max = arr[0];
