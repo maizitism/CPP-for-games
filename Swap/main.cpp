@@ -1,6 +1,6 @@
 #include <iostream>
 
-void swap(int* a, int* b) {
+void swapByPointer(int* a, int* b) {
 	// swap the value of a and b around
 	// so a == initial_b and b == initial_a
 	
@@ -12,13 +12,17 @@ void swap(int* a, int* b) {
 	*a = temp;
 }
 
+void swapByReference(int* a, int* b) {
+
+}
+
 int main() {
 	int a = 3;
 	int b = 5;
 	
 	std::cout << "The initial values of a and b are: " << a << ", " 
 		<< b << std::endl;
-	swap(&a, &b);
+	swapByPointer(&a, &b);
 	std::cout << "After swapping a and b by pointer, the values are: " 
 		<< a << ", " << b << std::endl;
 	// call swap function
