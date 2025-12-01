@@ -80,7 +80,7 @@ int main() {
 
 	float max = computeMaximum(arr, size);
 	float min = computeMinimum(arr, size);
-	float avg = computeMinimum(arr, size);
+	float avg = computeAverage(arr, size);
 
 	std::cout << "The maximum value of the array is: " << max << std::endl <<
 		"The minimum value of the array is: " << min << std::endl <<
