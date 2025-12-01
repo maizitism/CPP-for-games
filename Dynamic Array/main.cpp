@@ -3,7 +3,7 @@
 
 float computeMaximum(int* arr, int size) {
 	float max = arr[0];
-	for (int i = 0; i <= size; i++) {
+	for (int i = 0; i < size; i++) {
 		if (arr[i] > max) {
 			max = arr[i];
 		}
@@ -13,7 +13,7 @@ float computeMaximum(int* arr, int size) {
 
 float computeMinimum(int* arr, int size) {
 	float min = arr[0];
-	for (int i = 0; i <= size; i++) {
+	for (int i = 0; i < size; i++) {
 		if (arr[i] < min) {
 			min = arr[i];
 		}
@@ -23,7 +23,7 @@ float computeMinimum(int* arr, int size) {
 
 float computeAverage(int* arr, int size) {
 	float sum = 0;
-	for (int i = 0; i <= size; i++) {
+	for (int i = 0; i < size; i++) {
 		sum += arr[i];
 	}
 	return sum/size;
