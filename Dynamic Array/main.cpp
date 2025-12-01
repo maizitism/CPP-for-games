@@ -1,7 +1,7 @@
 #include <iostream>
 #include <limits>
 
-float computeMaximum(int* arr, int size) {
+float computeMaximum(float* arr, int size) {
 	float max = arr[0];
 	for (int i = 0; i < size; i++) {
 		if (arr[i] > max) {
@@ -11,7 +11,7 @@ float computeMaximum(int* arr, int size) {
 	return max;
 }
 
-float computeMinimum(int* arr, int size) {
+float computeMinimum(float* arr, int size) {
 	float min = arr[0];
 	for (int i = 0; i < size; i++) {
 		if (arr[i] < min) {
@@ -21,7 +21,7 @@ float computeMinimum(int* arr, int size) {
 	return min;
 }
 
-float computeAverage(int* arr, int size) {
+float computeAverage(float* arr, int size) {
 	float sum = 0;
 	for (int i = 0; i < size; i++) {
 		sum += arr[i];
@@ -62,9 +62,9 @@ int main() {
 		state = AllocatorState::Good;
 	}
 	
-	int* arr = new int[size] {};
+	float* arr = new float[size] {};
 	// now, user has to fill the allocated int array with some numbers
-	int input = 0;
+	float input = 0;
 	for (int i = 0; i < size; i++) {
 		std::cout << "Enter the " << i+1 << "th value of the array!" << std::endl;
 		std::cin >> input;
