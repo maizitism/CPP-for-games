@@ -1,9 +1,6 @@
 #include <iostream>
 
 void swapByPointer(int* a, int* b) {
-	// swap the value of a and b around
-	// so a == initial_b and b == initial_a
-	
 	// were dereferencing the COPIES of the pointers given,
 	// then changing their values around, to affect change in int main()
 
@@ -12,8 +9,13 @@ void swapByPointer(int* a, int* b) {
 	*a = temp;
 }
 
-void swapByReference(int* a, int* b) {
+void swapByReference(int& a, int& b) {
+	// now in this case were getting access to the actual
+	// variable in the main function
 
+	int temp = b;
+	b = a;
+	a = temp;
 }
 
 int main() {
@@ -25,8 +27,7 @@ int main() {
 	swapByPointer(&a, &b);
 	std::cout << "After swapping a and b by pointer, the values are: " 
 		<< a << ", " << b << std::endl;
-	// call swap function
-	// print values to console
-	// note: since values are passed by reference it makes sense for the swap
-	// function to not return anything, as its directly working with memory
+	swapByReference(a, b);
+	std::cout << "After swapping a and b by reference, the values are: "
+		<< a << ", " << b << std::endl;
 }
