@@ -6,6 +6,7 @@
   <Project Path="../Auto Keyword/Auto Keyword.vcxproj" Id="55d5f6ca-0622-4a90-9bbc-602b21ac9aa6" />
   <Project Path="../Build Process/Build Process.vcxproj" Id="355bfd60-f42e-450c-acb6-f399bcbe4556" />
   <Project Path="../Calculator/Calculator.vcxproj" Id="9e477970-5108-4b5a-a297-e9f6838b5fe8" />
+  <Project Path="../Dynamic Array/Dynamic Array.vcxproj" Id="97185a9b-d38f-4f7a-956b-b820300e9f06" />
   <Project Path="../Enumerations/Enumerations.vcxproj" Id="4f0525f1-d2c4-4b74-8b2f-94e99d8ff021" />
   <Project Path="../File IO/File IO.vcxproj" Id="1c5c7c81-118d-414d-b449-9164da0fcfdf" />
   <Project Path="../IO Lab Assignment/IO Lab Assignment.vcxproj" Id="2cf3d3b5-2110-49a8-8d6e-11ff8859b9e4" />
