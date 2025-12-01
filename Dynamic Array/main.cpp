@@ -67,7 +67,7 @@ int main() {
 	// now, user has to fill the allocated int array with some numbers
 	int input = 0;
 	for (int i = 0; i < size; i++) {
-		std::cout << "Enter the " << i << "th value of the array!" << std::endl;
+		std::cout << "Enter the " << i+1 << "th value of the array!" << std::endl;
 		std::cin >> input;
 		// check if inputted number is valid
 		while (std::cin.fail()) {
