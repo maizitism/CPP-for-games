@@ -30,4 +30,6 @@ int main() {
 	swapByReference(a, b);
 	std::cout << "After swapping a and b by reference, the values are: "
 		<< a << ", " << b << std::endl;
+
+	return 0;
 }
