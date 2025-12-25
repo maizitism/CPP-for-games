@@ -30,13 +30,61 @@ std::string askForCommand() {
 	return command;
 }
 
+void obtainNumbers(double& num1, double& num2, bool& signal) {
+	double temp1 = 0;
+	double temp2 = 0;
+	std::cout << "Enter the first number!" << std::endl;
+	std::cin >> temp1;
+	std::cout << "Enter the second number!" << std::endl;
+	std::cin >> temp2;
+
+	if (std::cin.fail()) {
+		std::cout << "One of the numbers was not valid. Try again."
+			<< std::endl;
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		signal = false;
+		return;
+	}
+	num1 = temp1;
+	num2 = temp2;
+	signal = true;
+}
+
 int main() {
 	auto state = CalculatorState::On; // turn on calculator
+	bool numberState = false;
+	double num1 = 0;
+	double num2 = 0;
+
 	while (state == CalculatorState::On) {
+		// reset numbers if multiple operations performed in one calc session
+		num1 = 0;
+		num2 = 0;
+
 		// keep prompting user for input until sucessful
 		std::string command = "\0";
 		while (command == "\0") {
 			command = askForCommand();
+		}
+
+		// check if quit command issued
+		if (command == "q") {
+			std::cout << "Goodbye!" << std::endl;
+			state = CalculatorState::Off;
+		}
+		
+		//choose apropriate evaluation method for seleceted command
+		if (command != "m") {
+			// keep prompting for numbers from user
+			while (numberState == false) {
+				obtainNumbers(num1, num2, numberState);
+			}
+			std::cout << "Obtained numbers: " << num1 << " , " << num2 << std::endl;
+
+			//double result = simpleEvaluate();
+		} else {
+			//do something
 		}
 		
 	}
