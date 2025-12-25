@@ -73,6 +73,15 @@ double simpleEvaluate(double& lhs, double& rhs, std::string command) {
 	}
 }
 
+const char* obtainExpression() {
+	std::string input = "\0";
+	//read in expression as standard string
+	std::cout << "Input the expression! Make sure it has no errors!" << std::endl;
+	std::cin >> input;
+	//convert standard string to character array
+	return input.c_str();
+}
+
 void printResult(double result) {
 	std::cout << "The result is " << result << ". " << std::endl;
 }
@@ -112,7 +121,13 @@ int main() {
 			double result = simpleEvaluate(num1, num2, command);
 			printResult(result);
 		} else {
-			//do something
+			//obtain expression from user
+			const char* splitExpression = obtainExpression();
+			// convert expression to reverse polish notation
+			const char* RPN = convertExpressionToRPN(splitExpression);
+			//convertExpressionToRPN
+			//shuntingYard
+			//printResult
 		}
 		
 	}
