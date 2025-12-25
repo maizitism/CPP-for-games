@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <unordered_set>
+#include <cmath>
 
 // define enum for calculator state
 enum class CalculatorState {
@@ -51,6 +52,27 @@ void obtainNumbers(double& num1, double& num2, bool& signal) {
 	signal = true;
 }
 
+double simpleEvaluate(double& lhs, double& rhs, std::string command) {
+	//"+", "-", "/", "*", "%", "^",
+	char op = command[0];
+	switch (op) {
+	case '+':
+		return lhs + rhs;
+	case '-':
+		return lhs - rhs;
+	case '/':
+		return lhs / rhs;
+	case '*':
+		return lhs * rhs;
+	case '%':
+		return std::fmod(lhs, rhs);
+	case '^':
+		return std::pow(lhs, rhs);
+	default:
+		std::cout << "Something went massively wrong." << std::endl;
+	}
+}
+
 int main() {
 	auto state = CalculatorState::On; // turn on calculator
 	bool numberState = false;
@@ -80,9 +102,9 @@ int main() {
 			while (numberState == false) {
 				obtainNumbers(num1, num2, numberState);
 			}
-			std::cout << "Obtained numbers: " << num1 << " , " << num2 << std::endl;
-
-			//double result = simpleEvaluate();
+			
+			double result = simpleEvaluate(num1, num2, command);
+			printResult(result);
 		} else {
 			//do something
 		}
