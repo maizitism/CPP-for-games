@@ -1,3 +1,5 @@
+#include "window.hpp"
+
 #include <iostream>
 #include <memory>
 
@@ -68,6 +70,23 @@ int main() {
 	// we can give shared pointers custom deletors, but it has to be initialised
 	// "manually"
 
+	//auto uPtr = std::unique_ptr<Widget>(new Widget(2)); // again, new keyword
+	auto uPtr = std::make_unique<Widget>(2);
+	//so, since its now an unique pointer, you cant do the following
 
+	//auto uPtr2 = uPtr; not allowed
+	// if you really want to, you can move it into the new variable
+	auto uPtr2 = std::move(uPtr); // uPtr becomes empty
+
+	// this is used in the case of exceptions, where a normally allocated
+	// widget would not get returned abck to the free memory store if
+	// it has gone out of scope, but this will clean it up for us
+	// using unique pointers is RAII safe. (bomb.)
+
+
+
+	Window win; // magic of the mem allocation happens in the unique pointer of
+	// the class
+	win.showWindow();
 	return 0;
 }
