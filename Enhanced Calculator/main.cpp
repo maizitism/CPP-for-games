@@ -70,6 +70,7 @@ double simpleEvaluate(double& lhs, double& rhs, std::string command) {
 		return std::pow(lhs, rhs);
 	default:
 		std::cout << "Something went massively wrong." << std::endl;
+		return 0;
 	}
 }
 
@@ -79,6 +80,76 @@ std::string obtainExpression() {
 	std::cout << "Input the expression! Make sure it has no errors!" << std::endl;
 	std::cin >> input;
 	return input;
+}
+
+int precedence(char op) {
+	switch (op) {
+	case '+': case '-':
+		return 1;
+	case '*': case '/': case '%':
+		return 2;
+	case '(':
+		return 0;
+	case ')':
+		return 3;
+	default:
+		return -1;
+	}
+}
+
+char* convertExpressionToRPN(const char* exp) {
+	int size = sizeof(exp) / sizeof(exp[0]);
+	char* holdingStack = new char[size+1]();
+	char* output = new char[size+1]();
+	int hSidx = 0;
+	int oidx = 0;
+
+	for (size_t i = 0; exp[i] != '\0'; ++i) {
+		// determine precendence
+		int pr = precedence(i);
+		// integer literal, append to output queue
+		if (pr == -1) {
+			output[oidx] = i;
+			oidx++;
+		}
+		//open parenthesis, append to holding stack no matter what
+		if (pr == 0) {
+			holdingStack[hSidx] = i;
+			hSidx++;
+		}
+		// closed parenthesis, drain holding stack until open bracket
+		if (pr == 3) {
+			while (precedence(holdingStack[hSidx]) != 0) {
+				output[oidx] = holdingStack[hSidx];
+				holdingStack[hSidx] = '\0';
+				oidx++;
+				hSidx--;
+			}
+			//remove open bracket
+			hSidx--;
+		}
+		// if other symbol, perform RPN procedure
+		else{
+			while (hSidx > 0 || (precedence(holdingStack[hSidx]) > pr) ) {
+				output[oidx] = holdingStack[hSidx];
+				holdingStack[hSidx] = '\0';
+				oidx++;
+				hSidx--;
+			}
+			holdingStack[hSidx] = i;
+		}
+	}
+	// drain the holding stack
+	while (hSidx >= 0) {
+		output[oidx] = holdingStack[hSidx];
+		holdingStack[hSidx] = '\0';
+		oidx++;
+		hSidx--;
+
+	}
+
+	delete[] holdingStack;
+	delete[] output;
 }
 
 void printResult(double result) {
@@ -121,10 +192,10 @@ int main() {
 			printResult(result);
 		} else {
 			//obtain expression from user
-			std::string expression = obtainExpression(expression);
+			std::string expression = obtainExpression();
 			const char* splitExpression = expression.c_str();
 			// convert expression to reverse polish notation
-			const char* RPN = convertExpressionToRPN(splitExpression);
+			char* RPN = convertExpressionToRPN(splitExpression);
 			//convertExpressionToRPN
 			//shuntingYard
 			//printResult
