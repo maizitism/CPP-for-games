@@ -73,13 +73,12 @@ double simpleEvaluate(double& lhs, double& rhs, std::string command) {
 	}
 }
 
-const char* obtainExpression() {
+std::string obtainExpression() {
 	std::string input = "\0";
 	//read in expression as standard string
 	std::cout << "Input the expression! Make sure it has no errors!" << std::endl;
 	std::cin >> input;
-	//convert standard string to character array
-	return input.c_str();
+	return input;
 }
 
 void printResult(double result) {
@@ -122,7 +121,8 @@ int main() {
 			printResult(result);
 		} else {
 			//obtain expression from user
-			const char* splitExpression = obtainExpression();
+			std::string expression = obtainExpression(expression);
+			const char* splitExpression = expression.c_str();
 			// convert expression to reverse polish notation
 			const char* RPN = convertExpressionToRPN(splitExpression);
 			//convertExpressionToRPN
