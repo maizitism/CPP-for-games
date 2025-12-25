@@ -73,6 +73,10 @@ double simpleEvaluate(double& lhs, double& rhs, std::string command) {
 	}
 }
 
+void printResult(double result) {
+	std::cout << "The result is " << result << ". " << std::endl;
+}
+
 int main() {
 	auto state = CalculatorState::On; // turn on calculator
 	bool numberState = false;
@@ -83,6 +87,7 @@ int main() {
 		// reset numbers if multiple operations performed in one calc session
 		num1 = 0;
 		num2 = 0;
+		numberState = false;
 
 		// keep prompting user for input until sucessful
 		std::string command = "\0";
@@ -94,6 +99,7 @@ int main() {
 		if (command == "q") {
 			std::cout << "Goodbye!" << std::endl;
 			state = CalculatorState::Off;
+			continue;
 		}
 		
 		//choose apropriate evaluation method for seleceted command
