@@ -11,6 +11,7 @@
   <Project Path="../File IO/File IO.vcxproj" Id="1c5c7c81-118d-414d-b449-9164da0fcfdf" />
   <Project Path="../IO Lab Assignment/IO Lab Assignment.vcxproj" Id="2cf3d3b5-2110-49a8-8d6e-11ff8859b9e4" />
   <Project Path="../IO/IO.vcxproj" Id="d9229f37-274d-4b49-9363-36c771f6f9cb" />
+  <Project Path="../Operators/Operators.vcxproj" Id="0f0dc66b-2fcd-4cf2-b892-5c1f19a6be2b" />
   <Project Path="../Pointers/Pointers.vcxproj" Id="77369d2b-936d-41d3-8c37-0d7ef71e0fa2" />
   <Project Path="../Shared Pointers/Shared Pointers.vcxproj" Id="fa5c0728-0ae7-4b9a-b727-6e0357c449eb" />
   <Project Path="../Swap/Swap.vcxproj" Id="267f427d-9a30-4a8e-a3c3-9cc61c186832" />
