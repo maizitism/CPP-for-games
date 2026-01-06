@@ -2,6 +2,7 @@
 #include <string>
 #include <unordered_set>
 #include <cmath>
+#include <cstring>
 
 // define enum for calculator state
 enum class CalculatorState {
@@ -77,80 +78,30 @@ double simpleEvaluate(double& lhs, double& rhs, std::string command) {
 std::string obtainExpression() {
 	std::string input = "\0";
 	//read in expression as standard string
-	std::cout << "Input the expression! Make sure it has no errors!" << std::endl;
+	std::cout << "Input the expression!" << std::endl <<
+		"Seperate each element of the equation with a space!" << std::endl;
 	std::cin >> input;
 	return input;
 }
 
 int precedence(char op) {
 	switch (op) {
-	case '+': case '-':
-		return 1;
-	case '*': case '/': case '%':
-		return 2;
-	case '(':
-		return 0;
-	case ')':
+	case '^':
+		return 4;
+	case '*': case '/':
 		return 3;
+	case '+': case '-':
+		return 2;
 	default:
 		return -1;
 	}
 }
 
-char* convertExpressionToRPN(const char* exp) {
-	int size = sizeof(exp) / sizeof(exp[0]);
-	char* holdingStack = new char[size+1]();
-	char* output = new char[size+1]();
-	int hSidx = 0;
-	int oidx = 0;
-
-	for (size_t i = 0; exp[i] != '\0'; ++i) {
-		// determine precendence
-		int pr = precedence(i);
-		// integer literal, append to output queue
-		if (pr == -1) {
-			output[oidx] = i;
-			oidx++;
-		}
-		//open parenthesis, append to holding stack no matter what
-		if (pr == 0) {
-			holdingStack[hSidx] = i;
-			hSidx++;
-		}
-		// closed parenthesis, drain holding stack until open bracket
-		if (pr == 3) {
-			while (precedence(holdingStack[hSidx]) != 0) {
-				output[oidx] = holdingStack[hSidx];
-				holdingStack[hSidx] = '\0';
-				oidx++;
-				hSidx--;
-			}
-			//remove open bracket
-			hSidx--;
-		}
-		// if other symbol, perform RPN procedure
-		else{
-			while (hSidx > 0 || (precedence(holdingStack[hSidx]) > pr) ) {
-				output[oidx] = holdingStack[hSidx];
-				holdingStack[hSidx] = '\0';
-				oidx++;
-				hSidx--;
-			}
-			holdingStack[hSidx] = i;
-		}
-	}
-	// drain the holding stack
-	while (hSidx >= 0) {
-		output[oidx] = holdingStack[hSidx];
-		holdingStack[hSidx] = '\0';
-		oidx++;
-		hSidx--;
-
-	}
-
-	delete[] holdingStack;
-	delete[] output;
-}
+struct Token {
+	int precedence;
+	int associativity;
+	std::string text;
+};
 
 void printResult(double result) {
 	std::cout << "The result is " << result << ". " << std::endl;
@@ -192,13 +143,12 @@ int main() {
 			printResult(result);
 		} else {
 			//obtain expression from user
-			std::string expression = obtainExpression();
-			const char* splitExpression = expression.c_str();
-			// convert expression to reverse polish notation
-			char* RPN = convertExpressionToRPN(splitExpression);
-			//convertExpressionToRPN
-			//shuntingYard
-			//printResult
+			std::string exp = obtainExpression();
+			// tokenise input
+			
+
+			// process it according to the shunting yard algorithm
+
 		}
 		
 	}
