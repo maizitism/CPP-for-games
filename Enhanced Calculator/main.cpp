@@ -3,11 +3,24 @@
 #include <unordered_set>
 #include <cmath>
 #include <cstring>
+#include <vector>
 
 // define enum for calculator state
 enum class CalculatorState {
 	On,
 	Off
+};
+// define enum for later tokenisation for Shunting-Yard
+enum class Associativity {
+	None,
+	Left,
+	Right
+};
+// define structure for token
+struct Token {
+	int precedence;
+	Associativity associativity;
+	std::string text;
 };
 
 std::string askForCommand() {
@@ -77,7 +90,7 @@ double simpleEvaluate(double& lhs, double& rhs, std::string command) {
 
 std::string obtainExpression() {
 	std::string input = "\0";
-	//read in expression as standard string
+	
 	std::cout << "Input the expression!" << std::endl <<
 		"Seperate each element of the equation with a space!" << std::endl;
 	std::cin >> input;
@@ -97,11 +110,6 @@ int precedence(char op) {
 	}
 }
 
-struct Token {
-	int precedence;
-	int associativity;
-	std::string text;
-};
 
 void printResult(double result) {
 	std::cout << "The result is " << result << ". " << std::endl;
