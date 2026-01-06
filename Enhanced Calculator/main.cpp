@@ -192,7 +192,7 @@ std::vector<Token> toRPN(std::vector<Token>& infix) {
 	std::vector<Token> output;
 	std::vector<Token> opStack; // treated as a stack
 
-	for (const Token & t : infix) {
+	for (const Token& t : infix) {
 		switch (t.type) {
 		case TokenType::Number:
 			output.push_back(t);
@@ -236,6 +236,28 @@ std::vector<Token> toRPN(std::vector<Token>& infix) {
 	}
 
 	return output;
+}
+
+double evalRPN(std::vector<Token>& rpn) {
+	std::vector<double> st;
+	
+	auto pop2 = [&]() -> std::pair<double, double> {
+		double rhs = st.back();
+		st.pop_back();
+		double lhs = st.back();
+		st.pop_back();
+		return { rhs, lhs };
+		};
+	for (const Token& t : rpn) {
+		if (t.type == TokenType::Number) {
+			st.push_back(static_cast<double>(std::stod(t.text)));
+			continue;
+		}
+
+		auto [lhs, rhs] = pop2();
+		st.push_back(simpleEvaluate(lhs, rhs, t.text));
+	}
+	return st.back();
 }
 
 void printResult(double result) {
@@ -284,6 +306,8 @@ int main() {
 			}
 			// process it according to the shunting yard algorithm
 			std::vector<Token> rpn = toRPN(infix);
+			// evaluate RPN expression
+			double eval = evalRPN(rpn);
 
 		}
 		
