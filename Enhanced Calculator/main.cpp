@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <sstream>
 #include <unordered_set> // remove either when rewriting askForCommand()
 #include <unordered_map>
 #include <cmath>
@@ -133,10 +134,58 @@ bool isInteger(const std::string& s) {
 }
 
 std::vector<Token> obtainExpression() {
+	std::cout << "Input expression, space seperated!" << std::endl;
+	
+	std::string line;
+	// read full line of input including spaces, consume leading whitespace
+	std::getline(std::cin >> std::ws, line);
+	// convert line to input stream
+	std::istringstream iss(line);
 
-	std::cout << "Input the expression!" << std::endl <<
-		"Seperate each element of the equation with a space!" << std::endl;
+	std::string tok;
+	std::vector<Token> tokens; // return variable
+	int parenBalance = 0; // keep track of parenthesis balance within eq.
 
+	while (iss >> tok) {
+		if (tok == "(") {
+			tokens.push_back({ TokenType::LeftParen, 0, Associativity::Left, tok });
+			parenBalance++;
+		}
+		else if (tok == ")") {
+			tokens.push_back({ TokenType::RightParen, 0, Associativity::Left, tok });
+			parenBalance--;
+			if (parenBalance < 0) {
+				std::cout << "Unmatched ) character. Aborting parsing." << std::endl;
+				return {};
+			}
+		}
+		else if (auto iter = operators.find(tok); iter != operators.end()) {
+			tokens.push_back({
+				TokenType::Operator,
+				iter->second.precedence,
+				iter->second.associativity,
+				tok
+				});
+		}
+		else if (isInteger(tok)) {
+			tokens.push_back({ TokenType::Number, 0, Associativity::Left, tok });
+		}
+		else {
+			std::cout << "Invalid Token: " << tok << std::endl;
+			return {};
+		}
+	}
+	//checks at the end of the parsing
+	if (parenBalance != 0) {
+		std::cout << "Mismatched Parenthesis" << std::endl;
+		return {};
+	}
+	if (tokens.empty()) {
+		std::cout << "Empty expression" << std::endl;
+		return {};
+	}
+
+	return tokens;
 }
 
 
@@ -179,10 +228,11 @@ int main() {
 			double result = simpleEvaluate(num1, num2, command);
 			printResult(result);
 		} else {
-			//obtain expression from user
-			//std::string exp = obtainExpression();
-			// tokenise input
-			
+			//obtain expression from user and tokenise
+			std::vector<Token> exp = obtainExpression();
+			if (exp.empty()) {
+				continue; // user already informed about source of error in function
+			}
 
 			// process it according to the shunting yard algorithm
 
