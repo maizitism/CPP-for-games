@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
-#include <unordered_set>
+#include <unordered_set> // remove either when rewriting askForCommand()
+#include <unordered_map>
 #include <cmath>
 #include <cstring>
 #include <vector>
@@ -10,18 +11,39 @@ enum class CalculatorState {
 	On,
 	Off
 };
+// define all possible token types
+enum class TokenType {
+	Number,
+	Operator,
+	LeftParen,
+	RightParen
+};
 // define enum for later tokenisation for Shunting-Yard
 enum class Associativity {
-	None,
 	Left,
 	Right
 };
 // define structure for token
 struct Token {
+	TokenType type;
 	int precedence;
 	Associativity associativity;
 	std::string text;
 };
+// define all allowed operators
+struct OperatorInfo {
+	int precedence;
+	Associativity associativity;
+};
+static const std::unordered_map<std::string, OperatorInfo> operators = {
+	{"+", {1, Associativity::Left}},
+	{"-", {1, Associativity::Left}},
+	{"*", {2, Associativity::Left}},
+	{"/", {2, Associativity::Left}},
+	{"%", {2, Associativity::Left}},
+	{"^", {3, Associativity::Right}}
+};
+
 
 std::string askForCommand() {
 	std::string command;
@@ -88,26 +110,33 @@ double simpleEvaluate(double& lhs, double& rhs, std::string command) {
 	}
 }
 
-std::string obtainExpression() {
-	std::string input = "\0";
-	
-	std::cout << "Input the expression!" << std::endl <<
-		"Seperate each element of the equation with a space!" << std::endl;
-	std::cin >> input;
-	return input;
+bool isInteger(const std::string& s) {
+	// string is empty
+	if (s.empty()) {
+		return false;
+	}
+	size_t i = 0;
+	// check if string is only sign
+	if (s[0] == '-' || s[0] == '+') {
+		if (s.size() == 1) {
+			return false;
+		}
+		i = 1;
+	}
+	// check if string is not number
+	for (; i < s.size(); i++) {
+		if (!std::isdigit(static_cast<unsigned char>(s[i]))){
+			return false;
+		}
+	}
+	return true;
 }
 
-int precedence(char op) {
-	switch (op) {
-	case '^':
-		return 4;
-	case '*': case '/':
-		return 3;
-	case '+': case '-':
-		return 2;
-	default:
-		return -1;
-	}
+std::vector<Token> obtainExpression() {
+
+	std::cout << "Input the expression!" << std::endl <<
+		"Seperate each element of the equation with a space!" << std::endl;
+
 }
 
 
@@ -151,7 +180,7 @@ int main() {
 			printResult(result);
 		} else {
 			//obtain expression from user
-			std::string exp = obtainExpression();
+			//std::string exp = obtainExpression();
 			// tokenise input
 			
 
