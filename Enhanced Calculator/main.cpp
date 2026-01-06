@@ -188,6 +188,55 @@ std::vector<Token> obtainExpression() {
 	return tokens;
 }
 
+std::vector<Token> toRPN(std::vector<Token>& infix) {
+	std::vector<Token> output;
+	std::vector<Token> opStack; // treated as a stack
+
+	for (const Token & t : infix) {
+		switch (t.type) {
+		case TokenType::Number:
+			output.push_back(t);
+			break;
+		case TokenType::Operator:
+			while (!opStack.empty()) {
+				const Token& top = opStack.back();
+				if (top.type != TokenType::Operator) {
+					break;
+				}
+				const bool higherPrecedence =
+					top.precedence > t.precedence;
+				const bool sameAndLeftAssociative =
+					(top.precedence == t.precedence && t.associativity == Associativity::Left);
+				if (higherPrecedence || sameAndLeftAssociative) {
+					output.push_back(top);
+					opStack.pop_back();
+				}
+				else {
+					break;
+				}
+			}
+			opStack.push_back(t);
+			break;
+		case TokenType::LeftParen:
+			opStack.push_back(t);
+			break;
+		case TokenType::RightParen:
+			while (!opStack.empty() && opStack.back().type != TokenType::LeftParen) {
+				output.push_back(opStack.back());
+				opStack.pop_back();
+			}
+			// input already validated, so '(' already exists
+			opStack.pop_back();
+			break;
+		}
+	}
+	while (!opStack.empty()) {
+		output.push_back(opStack.back());
+		opStack.pop_back();
+	}
+
+	return output;
+}
 
 void printResult(double result) {
 	std::cout << "The result is " << result << ". " << std::endl;
@@ -229,12 +278,12 @@ int main() {
 			printResult(result);
 		} else {
 			//obtain expression from user and tokenise
-			std::vector<Token> exp = obtainExpression();
-			if (exp.empty()) {
+			std::vector<Token> infix = obtainExpression();
+			if (infix.empty()) {
 				continue; // user already informed about source of error in function
 			}
-
 			// process it according to the shunting yard algorithm
+			std::vector<Token> rpn = toRPN(infix);
 
 		}
 		
