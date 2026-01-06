@@ -102,6 +102,10 @@ double simpleEvaluate(double& lhs, double& rhs, std::string command) {
 	case '*':
 		return lhs * rhs;
 	case '%':
+		if (rhs == 0) {
+			std::cout << "Right hand side cannot be 0 for modulo operator." << std::endl;
+			return 0;
+		}
 		return std::fmod(lhs, rhs);
 	case '^':
 		return std::pow(lhs, rhs);
