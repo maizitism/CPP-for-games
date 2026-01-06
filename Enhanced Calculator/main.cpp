@@ -246,8 +246,9 @@ double evalRPN(std::vector<Token>& rpn) {
 		st.pop_back();
 		double lhs = st.back();
 		st.pop_back();
-		return { rhs, lhs };
-		};
+		return { lhs, rhs };
+	};
+
 	for (const Token& t : rpn) {
 		if (t.type == TokenType::Number) {
 			st.push_back(static_cast<double>(std::stod(t.text)));
@@ -308,7 +309,7 @@ int main() {
 			std::vector<Token> rpn = toRPN(infix);
 			// evaluate RPN expression
 			double eval = evalRPN(rpn);
-
+			printResult(eval);
 		}
 		
 	}
