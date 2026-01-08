@@ -18,6 +18,7 @@
   <Project Path="IO/IO.vcxproj" Id="d9229f37-274d-4b49-9363-36c771f6f9cb" />
   <Project Path="Operators/Operators.vcxproj" Id="0f0dc66b-2fcd-4cf2-b892-5c1f19a6be2b" />
   <Project Path="Pointers/Pointers.vcxproj" Id="77369d2b-936d-41d3-8c37-0d7ef71e0fa2" />
+  <Project Path="Prime Number/Prime Number.vcxproj" Id="49ecf11a-bd08-4bc7-8578-fdc9a9390560" />
   <Project Path="Shared Pointers/Shared Pointers.vcxproj" Id="fa5c0728-0ae7-4b9a-b727-6e0357c449eb" />
   <Project Path="Swap/Swap.vcxproj" Id="267f427d-9a30-4a8e-a3c3-9cc61c186832" />
   <Project Path="Type Conversion Assignment/Type Conversion Assignment.vcxproj" Id="6469ac4a-abb2-4904-9f8e-42bbe8bf92c0" />
