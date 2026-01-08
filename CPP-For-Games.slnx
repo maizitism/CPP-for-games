@@ -4,6 +4,7 @@
     <Platform Name="x86" />
   </Configurations>
   <Project Path="Auto Keyword/Auto Keyword.vcxproj" Id="55d5f6ca-0622-4a90-9bbc-602b21ac9aa6" />
+  <Project Path="Bitwise Operators Assignment/Bitwise Operators Assignment.vcxproj" Id="ce7cb26b-0198-4c94-a8ed-b5024d318a64" />
   <Project Path="Bitwise Operators/Bitwise Operators.vcxproj" Id="b5963840-4694-455b-839c-7ef9e12e99b7" />
   <Project Path="Build Process/Build Process.vcxproj" Id="355bfd60-f42e-450c-acb6-f399bcbe4556" />
   <Project Path="Calculator/Calculator.vcxproj" Id="9e477970-5108-4b5a-a297-e9f6838b5fe8" />
