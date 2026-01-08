@@ -3,6 +3,7 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
+  <Project Path="Area Calculator/Area Calculator.vcxproj" Id="4053ae67-e339-4f70-838c-6e4b9d6af67e" />
   <Project Path="Auto Keyword/Auto Keyword.vcxproj" Id="55d5f6ca-0622-4a90-9bbc-602b21ac9aa6" />
   <Project Path="Bitwise Operators Assignment/Bitwise Operators Assignment.vcxproj" Id="ce7cb26b-0198-4c94-a8ed-b5024d318a64" />
   <Project Path="Bitwise Operators/Bitwise Operators.vcxproj" Id="b5963840-4694-455b-839c-7ef9e12e99b7" />
