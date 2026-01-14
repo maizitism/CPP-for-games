@@ -12,6 +12,7 @@
   <Project Path="Dynamic Array/Dynamic Array.vcxproj" Id="97185a9b-d38f-4f7a-956b-b820300e9f06" />
   <Project Path="Enhanced Calculator/Enhanced Calculator.vcxproj" Id="645ba753-81bd-4139-bbc6-f49530bf2718" />
   <Project Path="Enumerations/Enumerations.vcxproj" Id="4f0525f1-d2c4-4b74-8b2f-94e99d8ff021" />
+  <Project Path="Factorial/Factorial.vcxproj" Id="359b1e86-95da-43f0-9b06-e19ee7f7c5b6" />
   <Project Path="File IO/File IO.vcxproj" Id="1c5c7c81-118d-414d-b449-9164da0fcfdf" />
   <Project Path="Functions/Functions.vcxproj" Id="352b9453-93de-442a-9a56-146c481a6fe3" />
   <Project Path="Hello World/Hello World.vcxproj" Id="540280a8-dd61-457d-bb76-f2f75991b1e8" />
