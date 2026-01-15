@@ -9,9 +9,14 @@ class Entity {
 	// will be envoked when the function is initialised
 public: // make our constructor public, so an instance may be created.
 	//Entity(); // this is the default constructor
-	Entity(int hitPoint = 100); // this is a paramaterised constructor
+	explicit Entity(int hitPoint = 100); // this is a paramaterised constructor
 	// if a default value is given within the constructor, then the compiler will
 	// generate both a default constructor and a parameterised one
+
+	// when the explicit keyword is used, it will prevent the class from being initialised
+	// with only an integer
+
+	~Entity(); // destructor
 
 	int getHitpoints() const { // since class is not modified and were only returning data, we can mark this as const
 		return hitPoints;
@@ -35,17 +40,27 @@ void printHitpoints(const Entity& e) {
 	std::cout << "hitPoints: " << e.getHitpoints() << std::endl;
 }
 
+// lets define the destructor
+Entity::~Entity() {
+	// allows us to do cleanup if our class allocates dynamic memory
+	std::cout << "Entity::~Entity()" << hitPoints << std::endl;	
+}
+
 int main() {
 	// now, lets create an instance of the class
 	Entity entity{50};
 	// lets print the hitpoints of that entity
 	printHitpoints(entity);
 	// we can abuse this function to lead to bugs
-	printHitpoints(10); // an another entity is being created here for whatever reason
+	//printHitpoints(10); // an another entity is being created here for whatever reason
 	// whats happening here is called an implicit conversion from an integer
 	// this happens when the function called is not marked as explicit
 
-	Entity entity2 = 100; // valid because we have a parameterised constructor which takes an int
+	// the implementation above will no longer work if the explicit keyword is added
+
+
+	//Entity entity2 = 100; // valid because we have a parameterised constructor which takes an int
+	// this doesnt work anymore because we have an explicit keyword infront of our constructor
 
 	return 0;
 }
