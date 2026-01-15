@@ -29,6 +29,31 @@ private: // lets give the class some data
 	int hitPoints = 0; // we can also initialise them in the constructor
 
 };
+
+class Player : public Entity { // new class, player inherits from Entity publically
+	// public keyword means here all public member variables and functions of the base
+	// class are public in the derived class
+
+	// protected - all public member functions will be protected
+	// private - everything that was public, becomes private to the player class
+
+public:
+	explicit Player(int hitPoints); // compiler could also automatically create one for us, not necesarry in particular
+	~Player();
+
+};
+
+Player::Player(int hitPoints) : Entity(hitPoints) {
+	std::cout << "Player::Player(" << hitPoints << ")" << std::endl;
+	// here, hitpoints refers to the argument being passed to the function
+
+};
+// cheeky destructor
+Player::~Player() {
+	std::cout << "Player::~Player()" << std::endl;
+}
+
+
 // now, lets define a function for the class
 // usually, the function will return something, but the constructor doesnt return anything
 Entity::Entity(int hitPoint)
@@ -55,17 +80,25 @@ Entity::Entity(const Entity& e) : hitPoints (e.hitPoints){
 }
 
 int main() {
-	// now, lets create an instance of the class
-	Entity entity{50};
-	// lets print the hitpoints of that entity
-	printHitpoints(entity);
-	// we can abuse this function to lead to bugs
-	//printHitpoints(10); // an another entity is being created here for whatever reason
-	// whats happening here is called an implicit conversion from an integer
-	// this happens when the function called is not marked as explicit
+	{
+		// now, lets create an instance of the class
+		Entity entity{ 50 };
+		// lets print the hitpoints of that entity
+		printHitpoints(entity);
+		// we can abuse this function to lead to bugs
+		//printHitpoints(10); // an another entity is being created here for whatever reason
+		// whats happening here is called an implicit conversion from an integer
+		// this happens when the function called is not marked as explicit
 
-	// the implementation above will no longer work if the explicit keyword is added
+		// the implementation above will no longer work if the explicit keyword is added
 
-	Entity entity2{ entity }; // copy of entity
+		Entity entity2{ entity }; // copy of entity
+		
+	}
+
+	{
+		Player player{ 100 };
+	
+	}
 	return 0;
 }
