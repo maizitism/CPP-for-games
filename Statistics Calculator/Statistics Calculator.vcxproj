@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{68f0b313-ba5f-4094-92d2-b547997ca8e6}</ProjectGuid>
-    <RootNamespace>FunctionTemplates</RootNamespace>
+    <ProjectGuid>{7d601197-3e71-4a6e-ac14-bf589352bf4d}</ProjectGuid>
+    <RootNamespace>StatisticsCalculator</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
