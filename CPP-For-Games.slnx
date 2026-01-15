@@ -9,6 +9,7 @@
   <Project Path="Bitwise Operators/Bitwise Operators.vcxproj" Id="b5963840-4694-455b-839c-7ef9e12e99b7" />
   <Project Path="Build Process/Build Process.vcxproj" Id="355bfd60-f42e-450c-acb6-f399bcbe4556" />
   <Project Path="Calculator/Calculator.vcxproj" Id="9e477970-5108-4b5a-a297-e9f6838b5fe8" />
+  <Project Path="Classes/Classes.vcxproj" Id="f7aec59c-1c02-4f60-91b2-cc767c251dc6" />
   <Project Path="Dynamic Array/Dynamic Array.vcxproj" Id="97185a9b-d38f-4f7a-956b-b820300e9f06" />
   <Project Path="Enhanced Calculator/Enhanced Calculator.vcxproj" Id="645ba753-81bd-4139-bbc6-f49530bf2718" />
   <Project Path="Enumerations/Enumerations.vcxproj" Id="4f0525f1-d2c4-4b74-8b2f-94e99d8ff021" />
