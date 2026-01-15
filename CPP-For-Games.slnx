@@ -19,6 +19,7 @@
   <Project Path="Hello World/Hello World.vcxproj" Id="540280a8-dd61-457d-bb76-f2f75991b1e8" />
   <Project Path="IO Lab Assignment/IO Lab Assignment.vcxproj" Id="2cf3d3b5-2110-49a8-8d6e-11ff8859b9e4" />
   <Project Path="IO/IO.vcxproj" Id="d9229f37-274d-4b49-9363-36c771f6f9cb" />
+  <Project Path="Lambda Functions/Lambda Functions.vcxproj" Id="040cfdec-c9a1-4539-b08a-37415efe19fd" />
   <Project Path="Lambdas/Lambdas.vcxproj" Id="2baa7b4d-3c57-48cf-b5e3-24a168d81036" />
   <Project Path="Operators/Operators.vcxproj" Id="0f0dc66b-2fcd-4cf2-b892-5c1f19a6be2b" />
   <Project Path="Pointers/Pointers.vcxproj" Id="77369d2b-936d-41d3-8c37-0d7ef71e0fa2" />
