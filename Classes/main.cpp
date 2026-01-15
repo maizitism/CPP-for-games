@@ -24,6 +24,9 @@ public: // make our constructor public, so an instance may be created.
 		return hitPoints;
 	}
 
+	virtual void draw() const; // virtual - if we have a pointer to entity but the pointed to 
+	// object is not an entity, invoke THAT objects draw function instead of
+	// the draw function of the pointer. const - immutable
 
 private: // lets give the class some data
 	int hitPoints = 0; // we can also initialise them in the constructor
@@ -40,6 +43,8 @@ class Player : public Entity { // new class, player inherits from Entity publica
 public:
 	explicit Player(int hitPoints); // compiler could also automatically create one for us, not necesarry in particular
 	~Player();
+	// lets say i want to overwrite how the draw function works in the player class
+	void draw() const override; // override is optional
 
 };
 
@@ -78,6 +83,12 @@ Entity::Entity(const Entity& e) : hitPoints (e.hitPoints){
 	// do some other initialisation...
 	std::cout << "Entity::Entity(const Entity& e)" << std::endl;
 }
+void Entity::draw() const {
+	std::cout << "Entity::draw()" << std::endl; 
+}
+void Player::draw() const {
+	std::cout << "Player::draw()" << std::endl;
+}
 
 int main() {
 	{
@@ -98,7 +109,12 @@ int main() {
 
 	{
 		Player player{ 100 };
-	
+		player.draw(); // draw the player
+		// were not really doing polymorphism here, were kinda cheating
+		Entity* e = &player;
+		e->draw(); // this calls Entity's draw function, not the Player's
+		// now that the function is virtual and being overriden, it will call
+		// Player's draw function instead of Entity's
 	}
 	return 0;
 }
