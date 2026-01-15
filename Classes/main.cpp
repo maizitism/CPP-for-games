@@ -28,6 +28,10 @@ public: // make our constructor public, so an instance may be created.
 	// object is not an entity, invoke THAT objects draw function instead of
 	// the draw function of the pointer. const - immutable
 
+	virtual void update(float deltaTime) = 0; // to specify that this function as MUST be updated in the base class
+	// we can mark this as pure virtual
+
+
 private: // lets give the class some data
 	int hitPoints = 0; // we can also initialise them in the constructor
 
@@ -45,6 +49,10 @@ public:
 	~Player();
 	// lets say i want to overwrite how the draw function works in the player class
 	void draw() const override; // override is optional
+	void update(float deltaTime) override; 
+
+private:
+	int score = 0;
 
 };
 
@@ -58,7 +66,10 @@ Player::~Player() {
 	std::cout << "Player::~Player()" << std::endl;
 }
 
-
+void Player::update(float deltaTime) {
+	score += 10;
+	std::cout << "Player::update(" << deltaTime << ")" << std::endl;
+}
 // now, lets define a function for the class
 // usually, the function will return something, but the constructor doesnt return anything
 Entity::Entity(int hitPoint)
@@ -91,21 +102,21 @@ void Player::draw() const {
 }
 
 int main() {
-	{
-		// now, lets create an instance of the class
-		Entity entity{ 50 };
-		// lets print the hitpoints of that entity
-		printHitpoints(entity);
-		// we can abuse this function to lead to bugs
-		//printHitpoints(10); // an another entity is being created here for whatever reason
-		// whats happening here is called an implicit conversion from an integer
-		// this happens when the function called is not marked as explicit
+	//{
+	//	// now, lets create an instance of the class
+	//	Entity entity{ 50 };
+	//	// lets print the hitpoints of that entity
+	//	printHitpoints(entity);
+	//	// we can abuse this function to lead to bugs
+	//	//printHitpoints(10); // an another entity is being created here for whatever reason
+	//	// whats happening here is called an implicit conversion from an integer
+	//	// this happens when the function called is not marked as explicit
 
-		// the implementation above will no longer work if the explicit keyword is added
+	//	// the implementation above will no longer work if the explicit keyword is added
 
-		Entity entity2{ entity }; // copy of entity
-		
-	}
+	//	Entity entity2{ entity }; // copy of entity
+	//	
+	//}
 
 	{
 		Player player{ 100 };
@@ -115,6 +126,7 @@ int main() {
 		e->draw(); // this calls Entity's draw function, not the Player's
 		// now that the function is virtual and being overriden, it will call
 		// Player's draw function instead of Entity's
+		e->update(0.1f);
 	}
 	return 0;
 }
