@@ -18,6 +18,8 @@ public: // make our constructor public, so an instance may be created.
 
 	~Entity(); // destructor
 
+	Entity(const Entity& e); // copy constructor
+
 	int getHitpoints() const { // since class is not modified and were only returning data, we can mark this as const
 		return hitPoints;
 	}
@@ -46,6 +48,12 @@ Entity::~Entity() {
 	std::cout << "Entity::~Entity()" << hitPoints << std::endl;	
 }
 
+// lets define the copy constructor
+Entity::Entity(const Entity& e) : hitPoints (e.hitPoints){
+	// do some other initialisation...
+	std::cout << "Entity::Entity(const Entity& e)" << std::endl;
+}
+
 int main() {
 	// now, lets create an instance of the class
 	Entity entity{50};
@@ -58,9 +66,6 @@ int main() {
 
 	// the implementation above will no longer work if the explicit keyword is added
 
-
-	//Entity entity2 = 100; // valid because we have a parameterised constructor which takes an int
-	// this doesnt work anymore because we have an explicit keyword infront of our constructor
-
+	Entity entity2{ entity }; // copy of entity
 	return 0;
 }
