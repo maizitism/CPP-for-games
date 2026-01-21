@@ -117,7 +117,7 @@ int main() {
 	//	Entity entity2{ entity }; // copy of entity
 	//	
 	//}
-
+	 
 	{
 		Player player{ 100 };
 		player.draw(); // draw the player
